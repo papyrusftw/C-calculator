@@ -4,8 +4,8 @@
 #include <stdlib.h>
 
 int isInteger(const char *str) {
-    if (*str == '-') str++;     // allow negative numbers
-    if (*str == '\0') return 0; // reject "-" only
+    if (*str == '-') str++;
+    if (*str == '\0') return 0;
     while (*str) {
         if (!isdigit(*str)) return 0;
         str++;
