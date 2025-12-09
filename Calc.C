@@ -53,7 +53,6 @@ int main() {
             break;
         case '/':
             if (num2 != 0) {
-                // Cast to double for decimal division
                 result = (double)num1 / num2;
                 printf("Result: %.2f\n", result);
             } else {
