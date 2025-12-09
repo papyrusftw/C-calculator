@@ -20,9 +20,9 @@ int main() {
     double result;
     
     printf("Enter an operator (+;-;*;/): ");
-    scanf(" %c", &operator);  // Space before %c to skip whitespace
+    scanf(" %c", &operator);
     printf("Enter the first number (integer only): ");
-    scanf("%s", input1);  // No & before array name
+    scanf("%s", input1);
     if (!IsInteger(input1)) {
         printf("The first number isn't an integer.\n");
         return 1;
