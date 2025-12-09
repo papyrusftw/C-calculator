@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-int isInteger(const char *str) {
+int IsInteger(const char *str) {
     if (*str == '-') str++;
     if (*str == '\0') return 0;
     while (*str) {
@@ -16,46 +16,49 @@ int isInteger(const char *str) {
 int main() {
     char operator;
     char input1[50], input2[50];
-    int int1, int2;
-    double num1, num2;
-    printf("Enter an operator (+, -, *, /): ");
-    scanf(" %c", &operator);
-    printf("Enter first integer: ");
-    scanf("%s", input1);
+    int num1, num2;
+    double result;
     
-    if (!isInteger(input1)) {
-        printf("Error: First input is not an integer.\n");
+    printf("Enter an operator (+;-;*;/): ");
+    scanf(" %c", &operator);  // Space before %c to skip whitespace
+    printf("Enter the first number (integer only): ");
+    scanf("%s", input1);  // No & before array name
+    if (!IsInteger(input1)) {
+        printf("The first number isn't an integer.\n");
         return 1;
     }
-
-    printf("Enter second integer: ");
+    
+    printf("Enter the second number (integer only): ");
     scanf("%s", input2);
-
-    if (!isInteger(input2)) {
-        printf("Error: Second input is not an integer.\n");
+    if (!IsInteger(input2)) {
+        printf("The second number isn't an integer.\n");
         return 1;
     }
     
-    int1 = atoi(input1);
-    int2 = atoi(input2);
-    num1 = (double)int1;
-    num2 = (double)int2;
-
+    num1 = atoi(input1);
+    num2 = atoi(input2);
+    
     switch (operator) {
         case '+':
-            printf("Result: %.2f\n", num1 + num2);
+            result = num1 + num2;
+            printf("Result: %.2f\n", result);
             break;
         case '-':
-            printf("Result: %.2f\n", num1 - num2);
+            result = num1 - num2;
+            printf("Result: %.2f\n", result);
             break;
         case '*':
-            printf("Result: %.2f\n", num1 * num2);
+            result = num1 * num2;
+            printf("Result: %.2f\n", result);
             break;
         case '/':
-            if (num2 != 0)
-                printf("Result: %.2f\n", num1 / num2);
-            else
-                printf("Error: Division by zero isnt possible.\n");
+            if (num2 != 0) {
+                // Cast to double for decimal division
+                result = (double)num1 / num2;
+                printf("Result: %.2f\n", result);
+            } else {
+                printf("Division by zero isn't possible.\n");
+            }
             break;
         default:
             printf("Invalid operator.\n");
