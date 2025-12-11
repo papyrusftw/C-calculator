@@ -3,11 +3,18 @@
 #include <string.h>
 #include <stdlib.h>
 
-int IsInteger(const char *str) {
+int IsFloat(const char *str) {
+    int HasDecimal = 0;
     if (*str == '-') str++;
     if (*str == '\0') return 0;
     while (*str) {
-        if (!isdigit(*str)) return 0;
+        if (*str == '.'){
+            if (HasDecimal) return 0;
+            HasDecimal = 1;
+        }
+         else if (!isdigit(*str)){
+            return 0;
+         }
         str++;
     }
     return 1;
@@ -16,27 +23,26 @@ int IsInteger(const char *str) {
 int main() {
     char operator;
     char input1[50], input2[50];
-    int num1, num2;
+    double num1, num2;
     double result;
-    
     printf("Enter an operator (+;-;*;/): ");
     scanf(" %c", &operator);
-    printf("Enter the first number (integer only): ");
+    printf("Enter the first number: ");
     scanf("%s", input1);
-    if (!IsInteger(input1)) {
-        printf("The first number isn't an integer.\n");
+    if (!IsFloat(input1)) {
+        printf("The first number isnt a valid number.\n");
         return 1;
     }
     
-    printf("Enter the second number (integer only): ");
+    printf("Enter the second number: ");
     scanf("%s", input2);
-    if (!IsInteger(input2)) {
-        printf("The second number isn't an integer.\n");
+    if (!IsFloat(input2)) {
+        printf("The second number isnt a valid number.\n");
         return 1;
     }
     
-    num1 = atoi(input1);
-    num2 = atoi(input2);
+    num1 = atof(input1);
+    num2 = atof(input2);
     
     switch (operator) {
         case '+':
